@@ -6,6 +6,16 @@ Release date: 2024-02-21
 
 ### Fixed
 
+### Deprecated
+
+### Removed
+
+## 4.1.0
+
+Release date: 2024-02-14
+
+### Fixed
+
 - Fix `util.coordinates.latlon_bounds` for cases where the specified buffer is very large so that the bounds cover more than the full longitudinal range `[-180, 180]` [#839](https://github.com/CLIMADA-project/climada_python/pull/839)
 - Fix `climada.hazard.trop_cyclone` for TC tracks crossing the antimeridian [#839](https://github.com/CLIMADA-project/climada_python/pull/839)
 
