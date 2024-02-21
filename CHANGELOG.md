@@ -10,9 +10,9 @@ Release date: 2024-02-21
 
 ### Removed
 
-## 4.1.0
+## 4.1.1
 
-Release date: 2024-02-14
+Release date: 2024-02-21
 
 ### Fixed
 
