@@ -4,6 +4,8 @@
 
 Release date: 2024-02-21
 
+- Improved error messages produced by `ImpactCalc.impact()` in case impact function in the exposures is not found in impf_set [#863](https://github.com/CLIMADA-project/climada_python/pull/863)
+
 ### Fixed
 
 ### Deprecated

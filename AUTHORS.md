@@ -32,4 +32,4 @@
 * Kam Lam Yeung
 * Sarah Hülsen
 * Timo Schmid
-* Samuel Juhel
+* Luca Severino
