@@ -480,7 +480,7 @@ class Centroids():
         return sel_cen
 
     #TODO replace with nice GeoDataFrame util plot method.
-    def plot(self, axis=None, figsize=(9, 13), **kwargs):
+    def plot(self, axis=None, figsize=(9, 13), save_fig=False,**kwargs):
         """Plot centroids scatter points over earth
 
         Parameters
@@ -516,6 +516,9 @@ class Centroids():
         u_plot.add_shapes(axis)
         axis.scatter(self.lon, self.lat, transform=proj_data, **kwargs)
         plt.tight_layout()
+
+        if save_fig:
+            plt.savefig('Centroids.pdf',format='pdf',dpi=300,bbox_inches='tight')
         return axis
 
     def set_region_id(self, level='country', overwrite=False):

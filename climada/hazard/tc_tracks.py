@@ -77,16 +77,16 @@ CAT_NAMES = {
 }
 """Saffir-Simpson category names."""
 
-CAT_COLORS = cm_mp.rainbow(np.linspace(0, 1, len(SAFFIR_SIM_CAT)))
+CAT_COLORS = cm_mp.viridis(np.linspace(0, 1, len(SAFFIR_SIM_CAT)))
 """Color scale to plot the Saffir-Simpson scale."""
 
 IBTRACS_URL = ('https://www.ncei.noaa.gov/data/'
                'international-best-track-archive-for-climate-stewardship-ibtracs/'
-               'v04r00/access/netcdf')
+               'v04r01/access/netcdf')
 """Site of IBTrACS netcdf file containing all tracks v4.0,
 s. https://www.ncdc.noaa.gov/ibtracs/index.php?name=ib-v4-access"""
 
-IBTRACS_FILE = 'IBTrACS.ALL.v04r00.nc'
+IBTRACS_FILE = 'IBTrACS.ALL.v04r01.nc'
 """IBTrACS v4.0 file all"""
 
 IBTRACS_AGENCIES = [
@@ -179,7 +179,7 @@ class TCTracks():
             - orig_event_flag (attrs)
             - data_provider (attrs)
             - id_no (attrs)
-            - category (attrs)
+            - category (attrs) 
         Computed during processing:
             - on_land (bool for each track position)
             - dist_since_lf (in km)
@@ -326,7 +326,7 @@ class TCTracks():
                             year_range=None, basin=None, genesis_basin=None,
                             interpolate_missing=True, estimate_missing=False, correct_pres=False,
                             discard_single_points=True, additional_variables=None,
-                            file_name='IBTrACS.ALL.v04r00.nc'):
+                            file_name='IBTrACS.ALL.v04r01.nc'):
         """Create new TCTracks object from IBTrACS databse.
 
         When using data from IBTrACS, make sure to be familiar with the scope and limitations of
@@ -1216,7 +1216,7 @@ class TCTracks():
         lon, lat = [ar.ravel() for ar in np.meshgrid(lon, lat)]
         return Centroids(lat=lat, lon=lon)
 
-    def plot(self, axis=None, figsize=(9, 13), legend=True, adapt_fontsize=True, **kwargs):
+    def plot(self, axis=None, figsize=(9, 13), legend=True, adapt_fontsize=True, save_fig=False, **kwargs):
         """Track over earth. Historical events are blue, probabilistic black.
 
         Parameters
@@ -1239,7 +1239,7 @@ class TCTracks():
         axis : matplotlib.axes._subplots.AxesSubplot
         """
         if 'lw' not in kwargs:
-            kwargs['lw'] = 2
+            kwargs['lw'] = 1.5
         if 'transform' not in kwargs:
             kwargs['transform'] = ccrs.PlateCarree()
 
@@ -1291,8 +1291,11 @@ class TCTracks():
                 leg_lines.append(Line2D([0], [0], color='grey', lw=2, ls=':'))
                 leg_names.append('Historical')
                 leg_names.append('Synthetic')
-            axis.legend(leg_lines, leg_names, loc=0)
+            axis.legend(leg_lines, leg_names, loc='upper left')
         plt.tight_layout()
+
+        if save_fig:
+            plt.savefig('Tracks.png',format='png',dpi=300,bbox_inches='tight')
         return axis
 
     def write_netcdf(self, folder_name):
