@@ -45,6 +45,7 @@ import climada.util.coordinates as u_coord
 import climada.util.plot as u_plot
 
 LOGGER = logging.getLogger(__name__)
+LOGGER.setLevel(logging.INFO)
 
 HAZ_TYPE = 'TC'
 """Hazard type acronym for Tropical Cyclone"""

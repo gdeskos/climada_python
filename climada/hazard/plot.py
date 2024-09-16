@@ -61,9 +61,8 @@ class HazardPlot():
         title = list()
         for ret in return_periods:
             title.append('Return period: ' + str(ret) + ' years')
-        axis = u_plot.geo_im_from_array(inten_stats, self.centroids.coord,
-                                        colbar_name, title, smooth=smooth, axes=axis,
-                                        figsize=figsize, adapt_fontsize=adapt_fontsize, **kwargs)
+        axis = u_plot.geo_scatter_from_array(inten_stats, self.centroids.coord,
+                                        colbar_name, title)
         return axis, inten_stats
 
     def plot_intensity(self, event=None, centr=None, smooth=True, axis=None, adapt_fontsize=True,
